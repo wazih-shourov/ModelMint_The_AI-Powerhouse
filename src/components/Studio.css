@@ -1,0 +1,202 @@
+/* Studio.css - Futuristic Design */
+
+.studio-container {
+    background-color: var(--bg-secondary);
+    /* Technical Grid Background */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+[data-theme='dark'] .studio-container {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Header Override */
+.studio-container .header {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    border-top: 2px solid var(--accent-primary);
+}
+
+[data-theme='dark'] .studio-container .header {
+    background: rgba(15, 23, 42, 0.8);
+}
+
+/* Nodes / Cards */
+.studio-container .card {
+    border-radius: 0;
+    /* Sharp corners */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background: var(--card-bg);
+    position: relative;
+}
+
+.studio-container .card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 10px 15px -3px rgba(255, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Tech Decor (Corner Accents for Nodes) */
+.studio-container .card::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid var(--accent-primary);
+    border-right: 2px solid var(--accent-primary);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.studio-container .card::before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: -1px;
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid var(--accent-primary);
+    border-left: 2px solid var(--accent-primary);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.studio-container .card:hover::after,
+.studio-container .card:hover::before {
+    opacity: 1;
+}
+
+.studio-container .card-header {
+    border-radius: 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    font-family: 'Roboto Mono', monospace;
+    /* Tech font */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Buttons */
+.studio-container .btn {
+    border-radius: 0;
+    /* Sharp corners */
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.studio-container .btn-primary {
+    background: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+}
+
+.studio-container .btn-primary:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.studio-container .btn-secondary {
+    border: 1px solid var(--border-color);
+}
+
+.studio-container .btn-secondary:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: rgba(255, 0, 0, 0.05);
+}
+
+/* Inputs */
+.studio-container .input-field {
+    border-radius: 0;
+    border: 1px solid var(--border-color);
+    font-family: 'Inter', sans-serif;
+}
+
+.studio-container .input-field:focus {
+    border-color: var(--accent-primary);
+    box-shadow: none;
+    /* Clean look */
+}
+
+/* Dock */
+.studio-container .dock-glass {
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-bottom: 2px solid var(--accent-primary);
+    /* Tech accent */
+}
+
+.studio-container .dock-item {
+    border-radius: 0;
+}
+
+.studio-container .dock-item:hover {
+    background: rgba(255, 0, 0, 0.05);
+    color: var(--accent-primary);
+}
+
+/* Zoom Controls */
+.studio-container .bottom-left-controls {
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-left: 2px solid var(--accent-primary);
+}
+
+.studio-container .zoom-btn {
+    border-radius: 0;
+}
+
+.studio-container .zoom-btn:hover {
+    background: rgba(255, 0, 0, 0.05);
+    color: var(--accent-primary);
+}
+
+/* Status Pill */
+.studio-container .status-pill {
+    border-radius: 0;
+    border: 1px solid var(--border-color);
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+}
+
+.studio-container .status-pill:hover {
+    border-color: var(--accent-primary);
+}
+
+/* Loading Timer */
+.studio-container .loading-timer {
+    border-radius: 0 !important;
+    border: 1px solid #f59e0b !important;
+    font-family: 'Roboto Mono', monospace !important;
+    text-transform: uppercase;
+}
+
+/* Webcam Container */
+.studio-container .webcam-container {
+    border-radius: 0;
+    border: 1px solid var(--border-color);
+}
+
+.studio-container .sample-thumb {
+    border-radius: 0;
+}

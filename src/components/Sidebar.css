@@ -1,0 +1,287 @@
+/* Sidebar.css - Futuristic Redesign */
+.dev-sidebar {
+    height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.dev-sidebar.open {
+    width: 260px;
+}
+
+.dev-sidebar.closed {
+    width: 70px;
+}
+
+/* Header */
+.sidebar-header {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    overflow: hidden;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border-radius: 0;
+    /* Sharp */
+    flex-shrink: 0;
+}
+
+.logo-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.sidebar-header h2 {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: #1f2937;
+    margin: 0;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.sidebar-toggle {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+    border-radius: 0;
+    /* Sharp */
+}
+
+.sidebar-toggle:hover {
+    color: #1f2937;
+    background: #f1f5f9;
+}
+
+/* Navigation */
+.sidebar-nav {
+    flex: 1;
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.section-header:hover {
+    color: #64748b;
+}
+
+.nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+/* Futuristic Nav Item */
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    color: #64748b;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+    border-left: 3px solid transparent;
+    border-radius: 0;
+    /* Sharp */
+}
+
+.nav-item:hover {
+    background: #f8fafc;
+    color: #1f2937;
+    border-left-color: #ff0000;
+    /* Red accent on hover */
+    padding-left: 1.75rem;
+    /* Slight shift */
+}
+
+.nav-item.active {
+    background: #fef2f2;
+    color: #ff0000;
+    border-left-color: #ff0000;
+    font-weight: 600;
+}
+
+.nav-item .badge {
+    margin-left: auto;
+    background: #ff0000;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 0;
+    /* Sharp */
+    font-weight: 700;
+}
+
+/* Quick Actions */
+.quick-actions {
+    padding: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.quick-action-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 0.5rem;
+    border-radius: 0;
+    /* Sharp */
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-action-btn:hover {
+    background: white;
+    border-color: #ff0000;
+    color: #ff0000;
+    box-shadow: 0 4px 6px -1px rgba(255, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Resource Monitor */
+.resource-monitor {
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
+
+.resource-item {
+    margin-bottom: 1rem;
+}
+
+.resource-item:last-child {
+    margin-bottom: 0;
+}
+
+.resource-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
+
+.resource-bar {
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 0;
+    /* Sharp */
+    overflow: hidden;
+    margin-bottom: 0.25rem;
+}
+
+.resource-fill {
+    height: 100%;
+    background: #ff0000;
+    transition: width 0.3s ease;
+}
+
+.resource-text {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    text-align: right;
+}
+
+.resource-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* Scrollbar */
+.dev-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.dev-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dev-sidebar::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+}
+
+.dev-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+}

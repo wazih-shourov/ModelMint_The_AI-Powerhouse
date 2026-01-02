@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModelMint - Cache Cleaner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ff4d4d, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .info-box {
+            background: rgba(255, 77, 77, 0.1);
+            border-left: 4px solid #ff4d4d;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .info-box h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #ff6b6b;
+        }
+
+        .info-box p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff4d4d, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 77, 77, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+
+        button.secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        #log {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .log-entry {
+            margin-bottom: 0.5rem;
+            padding: 0.25rem 0;
+        }
+
+        .log-entry.success {
+            color: #4ade80;
+        }
+
+        .log-entry.error {
+            color: #ff6b6b;
+        }
+
+        .log-entry.info {
+            color: #60a5fa;
+        }
+
+        .log-entry.warning {
+            color: #fbbf24;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-card h4 {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-card p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🧹 ModelMint Cache Cleaner</h1>
+        <p class="subtitle">Fix MobileNet loading issues by clearing corrupted cache</p>
+
+        <div class="info-box">
+            <h3>⚠️ কেন এটি প্রয়োজন?</h3>
+            <p>
+                MobileNet model loading error সাধারণত browser cache corruption এর কারণে হয়।
+                এই tool আপনার browser থেকে সব TensorFlow.js এবং model cache clear করবে।
+            </p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h4>Cached Models</h4>
+                <p id="modelCount">-</p>
+            </div>
+            <div class="stat-card">
+                <h4>IndexedDB Size</h4>
+                <p id="dbSize">-</p>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button onclick="scanCache()">🔍 Scan Cache</button>
+            <button onclick="clearTensorFlowCache()">🗑️ Clear TensorFlow Cache</button>
+            <button onclick="clearAllCache()" class="secondary">🧹 Clear All Cache</button>
+            <button onclick="testMobileNet()" class="secondary">🧪 Test MobileNet</button>
+        </div>
+
+        <div id="log"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1"></script>
+
+    <script>
+        const log = document.getElementById('log');
+
+        function addLog(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.innerHTML = `<span class="time">[${new Date().toLocaleTimeString()}]</span> ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        async function scanCache() {
+            addLog('🔍 Scanning cache...', 'info');
+
+            try {
+                // List all models
+                const models = await tf.io.listModels();
+                const modelKeys = Object.keys(models);
+
+                document.getElementById('modelCount').textContent = modelKeys.length;
+
+                addLog(`Found ${modelKeys.length} cached models`, 'success');
+
+                if (modelKeys.length > 0) {
+                    modelKeys.forEach(key => {
+                        addLog(`  📦 ${key}`, 'info');
+                    });
+                }
+
+                // List IndexedDB databases
+                if ('databases' in indexedDB) {
+                    const dbs = await indexedDB.databases();
+                    const tfDbs = dbs.filter(db =>
+                        db.name.includes('tensorflowjs') ||
+                        db.name.includes('mobilenet')
+                    );
+
+                    addLog(`Found ${tfDbs.length} TensorFlow.js databases`, 'success');
+                    tfDbs.forEach(db => {
+                        addLog(`  💾 ${db.name}`, 'info');
+                    });
+                }
+
+                addLog('✅ Scan complete', 'success');
+            } catch (error) {
+                addLog(`❌ Scan failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function clearTensorFlowCache() {
+            addLog('🗑️ Clearing TensorFlow.js cache...', 'info');
+
+            try {
+                // Clear all TensorFlow.js models
+                const models = await tf.io.listModels();
+                const modelKeys = Object.keys(models);
+
+                for (const key of modelKeys) {
+                    addLog(`Removing: ${key}`, 'warning');
+                    await tf.io.removeModel(key);
+                }
+
+                // Clear IndexedDB
+                if ('databases' in indexedDB) {
+                    const dbs = await indexedDB.databases();
+                    const tfDbs = dbs.filter(db =>
+                        db.name.includes('tensorflowjs') ||
+                        db.name.includes('mobilenet')
+                    );
+
+                    for (const db of tfDbs) {
+                        addLog(`Deleting database: ${db.name}`, 'warning');
+                        indexedDB.deleteDatabase(db.name);
+                    }
+                }
+
+                document.getElementById('modelCount').textContent = '0';
+                addLog('✅ TensorFlow.js cache cleared successfully', 'success');
+                addLog('🔄 Please refresh your application', 'info');
+            } catch (error) {
+                addLog(`❌ Clear failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function clearAllCache() {
+            addLog('🧹 Clearing ALL cache...', 'warning');
+
+            if (confirm('This will clear ALL browser cache for this site. Continue?')) {
+                try {
+                    // Clear TensorFlow cache
+                    await clearTensorFlowCache();
+
+                    // Clear localStorage
+                    localStorage.clear();
+                    addLog('Cleared localStorage', 'success');
+
+                    // Clear sessionStorage
+                    sessionStorage.clear();
+                    addLog('Cleared sessionStorage', 'success');
+
+                    addLog('✅ All cache cleared', 'success');
+                    addLog('🔄 Refreshing page in 3 seconds...', 'info');
+
+                    setTimeout(() => {
+                        window.location.reload(true);
+                    }, 3000);
+                } catch (error) {
+                    addLog(`❌ Clear failed: ${error.message}`, 'error');
+                }
+            }
+        }
+
+        async function testMobileNet() {
+            addLog('🧪 Testing MobileNet loading...', 'info');
+            addLog('<span class="spinner"></span> Loading...', 'info');
+
+            try {
+                // Initialize TensorFlow.js
+                await tf.ready();
+                addLog(`✅ TensorFlow.js ready (v${tf.version.tfjs})`, 'success');
+
+                // Try loading MobileNet
+                const startTime = Date.now();
+                const model = await mobilenet.load({ version: 2, alpha: 1.0 });
+                const loadTime = Date.now() - startTime;
+
+                addLog(`✅ MobileNet loaded successfully in ${loadTime}ms`, 'success');
+                addLog(`Model version: MobileNet v2 (alpha 1.0)`, 'info');
+
+                // Test inference
+                const canvas = document.createElement('canvas');
+                canvas.width = 224;
+                canvas.height = 224;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, 224, 224);
+
+                const predictions = await model.classify(canvas);
+                addLog(`✅ Inference test successful`, 'success');
+                addLog(`Top prediction: ${predictions[0].className}`, 'info');
+
+            } catch (error) {
+                addLog(`❌ Test failed: ${error.message}`, 'error');
+                addLog(`Error stack: ${error.stack}`, 'error');
+            }
+        }
+
+        // Auto-scan on load
+        window.addEventListener('load', () => {
+            addLog('🚀 ModelMint Cache Cleaner initialized', 'success');
+            setTimeout(scanCache, 500);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,349 @@
+/* System Boot Intro - eDEX-UI Style (Light Theme) */
+.boot-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f8fafc;
+    /* Light background */
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto Mono', monospace;
+    color: #ef4444;
+    /* Red Theme */
+    overflow: hidden;
+}
+
+.boot-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(239, 68, 68, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(239, 68, 68, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.boot-container {
+    position: relative;
+    z-index: 10;
+    width: 80%;
+    max-width: 800px;
+    border: 2px solid #ef4444;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    /* Light container */
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.15);
+    transition: opacity 0.5s ease;
+}
+
+.boot-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ef4444;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    color: #1e293b;
+    /* Dark text for header */
+}
+
+.boot-terminal {
+    min-height: 200px;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.terminal-line {
+    margin-bottom: 0.5rem;
+    text-shadow: none;
+    /* Removed text shadow for cleaner look */
+    color: #334155;
+    /* Darker text for terminal lines */
+}
+
+.prompt {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2rem;
+    background-color: #ef4444;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.boot-status {
+    border-top: 1px solid rgba(239, 68, 68, 0.3);
+    padding-top: 1rem;
+}
+
+.status-label {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    color: #64748b;
+    /* Muted text */
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(239, 68, 68, 0.1);
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: #ef4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+.status-details {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+/* Glitch Effect Styles */
+.access-granted {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ef4444;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 2rem 4rem;
+    border: 2px solid #ef4444;
+    box-shadow: 0 20px 50px rgba(239, 68, 68, 0.2);
+    white-space: nowrap;
+    z-index: 100;
+    text-align: center;
+    letter-spacing: 2px;
+    opacity: 0;
+    /* Start hidden */
+    animation: glitch-enter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+        glitch-idle 2.5s 0.5s infinite;
+    /* Start idle after enter */
+}
+
+.access-granted.exiting {
+    animation: glitch-exit 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.access-granted::before,
+.access-granted::after {
+    content: "WELCOME TO MODELMINT";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ef4444;
+    opacity: 0.8;
+}
+
+.access-granted::before {
+    left: 2px;
+    text-shadow: -2px 0 #000;
+    clip-path: inset(0 0 0 0);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.access-granted::after {
+    left: -2px;
+    text-shadow: -2px 0 #000;
+    clip-path: inset(0 0 0 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+/* Keyframes */
+
+@keyframes glitch-enter {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) skew(0deg) scale(0.8);
+        clip-path: inset(50% 0 50% 0);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) skew(-10deg) scale(0.9);
+        clip-path: inset(10% 0 60% 0);
+    }
+
+    40% {
+        transform: translate(-50%, -50%) skew(10deg) scale(1.1);
+        clip-path: inset(40% 0 20% 0);
+    }
+
+    60% {
+        transform: translate(-50%, -50%) skew(-5deg) scale(0.95);
+        clip-path: inset(0 0 0 0);
+    }
+
+    80% {
+        transform: translate(-50%, -50%) skew(2deg) scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) skew(0deg) scale(1);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes glitch-idle {
+    0% {
+        transform: translate(-50%, -50%) skew(0deg);
+    }
+
+    95% {
+        transform: translate(-50%, -50%) skew(0deg);
+    }
+
+    96% {
+        transform: translate(-50%, -50%) skew(2deg);
+    }
+
+    97% {
+        transform: translate(-50%, -50%) skew(-2deg);
+    }
+
+    98% {
+        transform: translate(-50%, -50%) skew(0deg);
+    }
+
+    99% {
+        transform: translate(-50%, -50%) skew(1deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) skew(0deg);
+    }
+}
+
+@keyframes glitch-exit {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) skew(0deg) scale(1);
+        clip-path: inset(0 0 0 0);
+    }
+
+    20% {
+        transform: translate(-50%, -50%) skew(10deg) scale(1.1);
+        clip-path: inset(20% 0 40% 0);
+    }
+
+    40% {
+        transform: translate(-50%, -50%) skew(-10deg) scale(0.9);
+        clip-path: inset(60% 0 10% 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) skew(20deg) scale(0.5);
+        clip-path: inset(50% 0 50% 0);
+    }
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip-path: inset(20% 0 80% 0);
+        transform: translate(-2px, 0);
+    }
+
+    20% {
+        clip-path: inset(60% 0 10% 0);
+        transform: translate(2px, 0);
+    }
+
+    40% {
+        clip-path: inset(40% 0 50% 0);
+        transform: translate(-2px, 0);
+    }
+
+    60% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translate(2px, 0);
+    }
+
+    80% {
+        clip-path: inset(10% 0 70% 0);
+        transform: translate(-2px, 0);
+    }
+
+    100% {
+        clip-path: inset(30% 0 20% 0);
+        transform: translate(2px, 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translate(2px, 0);
+    }
+
+    20% {
+        clip-path: inset(30% 0 20% 0);
+        transform: translate(-2px, 0);
+    }
+
+    40% {
+        clip-path: inset(70% 0 30% 0);
+        transform: translate(2px, 0);
+    }
+
+    60% {
+        clip-path: inset(20% 0 80% 0);
+        transform: translate(-2px, 0);
+    }
+
+    80% {
+        clip-path: inset(50% 0 10% 0);
+        transform: translate(2px, 0);
+    }
+
+    100% {
+        clip-path: inset(90% 0 5% 0);
+        transform: translate(-2px, 0);
+    }
+}
+
+/* Scanline Effect - Subtle for Light Mode */
+.boot-screen::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.02) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 2;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}

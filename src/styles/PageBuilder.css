@@ -1,0 +1,400 @@
+/* Page Builder Professional Redesign */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-app: #ffffff;
+    --bg-panel: #ffffff;
+    --bg-canvas: #f0f0f0;
+    --border-color: #e5e7eb;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --accent-color: #3b82f6;
+    --accent-hover: #2563eb;
+    --danger-color: #ef4444;
+    --input-bg: #ffffff;
+    --input-border: #d1d5db;
+    --header-height: 56px;
+    --sidebar-width-left: 260px;
+    --sidebar-width-right: 300px;
+}
+
+.builder-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--bg-app);
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+/* --- Header --- */
+.builder-header {
+    height: var(--header-height);
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    z-index: 50;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.header-left,
+.header-center,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-center {
+    flex: 1;
+    justify-content: center;
+}
+
+.device-toggles {
+    display: flex;
+    background: #f3f4f6;
+    padding: 2px;
+    border-radius: 6px;
+    gap: 2px;
+}
+
+.device-btn {
+    padding: 6px 10px;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.device-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.device-btn.active {
+    background: white;
+    color: var(--accent-color);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-publish {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-publish:hover {
+    background: var(--accent-hover);
+}
+
+/* --- Main Layout --- */
+.builder-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* --- Left Sidebar (Tools) --- */
+.builder-sidebar-left {
+    width: var(--sidebar-width-left);
+    background: var(--bg-panel);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    z-index: 40;
+}
+
+.sidebar-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-tab {
+    flex: 1;
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.sidebar-tab.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+.tools-grid {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    overflow-y: auto;
+}
+
+.tool-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: grab;
+    transition: all 0.2s;
+    gap: 0.5rem;
+}
+
+.tool-card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+}
+
+.tool-card span {
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.tool-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 1.5rem 0 0.5rem 0;
+    grid-column: span 2;
+}
+
+.tool-category:first-child {
+    margin-top: 0;
+}
+
+/* --- Canvas Area --- */
+.builder-canvas-area {
+    flex: 1;
+    background-color: var(--bg-canvas);
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    padding: 2rem;
+    position: relative;
+    /* Dot pattern background */
+    background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.canvas-frame {
+    background: white;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transition: width 0.3s ease;
+    min-height: 100vh;
+    position: relative;
+    /* Ensure absolute children are relative to this */
+}
+
+/* --- Right Sidebar (Properties) --- */
+.builder-sidebar-right {
+    width: var(--sidebar-width-right);
+    background: var(--bg-panel);
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    z-index: 40;
+}
+
+.properties-header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600;
+    font-size: 0.875rem;
+    background: #f9fafb;
+}
+
+.properties-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.prop-section {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.prop-section-header {
+    padding: 0.75rem 1rem;
+    background: #f9fafb;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prop-section-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.prop-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.prop-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.prop-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.prop-input,
+.prop-select {
+    width: 100%;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.prop-input:focus,
+.prop-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 1px var(--accent-color);
+}
+
+.prop-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.prop-unit {
+    position: absolute;
+    right: 8px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+
+/* Canvas Elements */
+.canvas-section {
+    position: absolute;
+    border: 1px dashed transparent;
+    transition: border-color 0.2s;
+}
+
+/* Reset margins for internal elements to prevent layout shifts */
+.canvas-section * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.canvas-section:hover {
+    border-color: var(--accent-color);
+    z-index: 10;
+}
+
+.canvas-section.selected {
+    border: 2px solid var(--accent-color);
+    z-index: 20;
+}
+
+.section-label {
+    position: absolute;
+    top: -24px;
+    left: -2px;
+    background: var(--accent-color);
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px 4px 0 0;
+    display: none;
+    white-space: nowrap;
+}
+
+.canvas-section.selected .section-label {
+    display: block;
+}
+
+/* Resize Handles */
+.resize-handle {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border: 1px solid var(--accent-color);
+    position: absolute;
+    z-index: 30;
+    display: none;
+}
+
+.canvas-section.selected .resize-handle {
+    display: block;
+}
+
+.rh-se {
+    bottom: -5px;
+    right: -5px;
+    cursor: se-resize;
+}
+
+.rh-sw {
+    bottom: -5px;
+    left: -5px;
+    cursor: sw-resize;
+}
+
+.rh-ne {
+    top: -5px;
+    right: -5px;
+    cursor: ne-resize;
+}
+
+.rh-nw {
+    top: -5px;
+    left: -5px;
+    cursor: nw-resize;
+}
+
+.empty-state {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}

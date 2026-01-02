@@ -1,0 +1,143 @@
+# ========================================
+# ModelMint - Professional .gitignore
+# ========================================
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+package-lock.json
+
+# Testing
+coverage/
+
+# Production
+build/
+dist/
+
+# ========================================
+# 🔒 SENSITIVE FILES (DO NOT COMMIT)
+# ========================================
+
+# Environment Variables & API Keys
+.env
+.env.*
+!.env.example
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python Server (Confidential Backend Logic)
+python-server/
+!python-server/README.md
+!python-server/requirements.txt
+
+# Supabase Configuration
+supabase/
+.supabase/
+
+# ========================================
+# Logs & Debug Files
+# ========================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.log
+logs/
+
+# ========================================
+# IDE & Editor Files
+# ========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ========================================
+# OS Files
+# ========================================
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Desktop.ini
+
+# ========================================
+# Python (Backend)
+# ========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ========================================
+# Model Files (Large Binary Files)
+# ========================================
+*.h5
+*.tflite
+*.pb
+*.onnx
+*.pth
+*.weights
+*.bin
+models/
+checkpoints/
+
+# ========================================
+# Temporary & Cache
+# ========================================
+temp/
+tmp/
+*.tmp
+*.cache
+.cache/
+.parcel-cache/
+
+# ========================================
+# AI Assistant Files
+# ========================================
+.gemini/
+.cursor/
+.github/copilot/
+
+# ========================================
+# Deployment & Build Artifacts
+# ========================================
+.vercel/
+.netlify/
+.render/
+*.zip
+*.tar.gz
+
+# ========================================
+# Database & Storage
+# ========================================
+*.db
+*.sqlite
+*.sqlite3
+data/
+uploads/
+
+# ========================================
+# Security & Secrets
+# ========================================
+*.pem
+*.key
+*.cert
+*.crt
+secrets/
+credentials/

@@ -1,0 +1,10 @@
+flask==3.0.0
+flask-cors==4.0.0
+tensorflow>=2.16.0
+tensorflowjs
+tensorflow-hub>=0.15.0
+requests==2.31.0
+gunicorn==21.2.0
+supabase>=2.0.0
+pillow>=10.0.0
+numpy>=1.24.0

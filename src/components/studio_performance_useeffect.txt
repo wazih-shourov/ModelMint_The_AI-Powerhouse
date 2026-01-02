@@ -1,0 +1,86 @@
+    // Monitor training state and manage performance tracking
+    useEffect(() => {
+        if (isTraining && !performanceMetrics) {
+            // Training just started
+            console.log('🔥 Training started - starting performance monitor');
+            
+            // Start performance monitoring
+            performanceMonitorRef.current.startMonitoring((metrics) => {
+                setPerformanceMetrics(metrics);
+            });
+            
+            // Create training session in database
+            const createSession = async () => {
+                try {
+                    const response = await fetch(`${PYTHON_SERVER_URL}/api/training-sessions`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            userId: user?.id,
+                            projectId: projectId,
+                            modelName: baseModel || 'MobileNet',
+                            modelType: projectType || 'IMAGE',
+                            startedAt: new Date().toISOString(),
+                            totalSamples: classes.reduce((sum, c) => sum + c.samples.length, 0)
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    if (data.success) {
+                        trainingSessionIdRef.current = data.sessionId;
+                        console.log('✅ Training session created:', data.sessionId);
+                    }
+                } catch (error) {
+                    console.error('❌ Error creating training session:', error);
+                }
+            };
+            
+            createSession();
+        } else if (!isTraining && performanceMetrics) {
+            // Training just completed
+            console.log('✅ Training completed - stopping performance monitor');
+            
+            // Stop monitoring and get summary
+            const summary = performanceMonitorRef.current.stopMonitoring();
+            
+            // Update training session with results
+            const updateSession = async () => {
+                if (!trainingSessionIdRef.current || !summary) return;
+                
+                try {
+                    await fetch(`${PYTHON_SERVER_URL}/api/training-sessions/${trainingSessionIdRef.current}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            completedAt: new Date().toISOString(),
+                            durationSeconds: summary.duration,
+                            avgCpuUsage: summary.cpu.avg,
+                            maxCpuUsage: summary.cpu.max,
+                            gpuUsed: summary.gpu.used,
+                            gpuModel: summary.gpu.model,
+                            avgMemoryMb: summary.memory.avg,
+                            maxMemoryMb: summary.memory.max,
+                            totalEpochs: trainingProgress?.epoch || 50,
+                            finalAccuracy: trainingProgress?.accuracy || 0,
+                            finalLoss: trainingProgress?.loss || 0,
+                            trainingSpeed: summary.timeline.length > 0 ? 
+                                classes.reduce((sum, c) => sum + c.samples.length, 0) / summary.duration : 0,
+                            metricsTimeline: summary.timeline,
+                            status: 'completed'
+                        })
+                    });
+                    
+                    console.log('✅ Training session updated');
+                } catch (error) {
+                    console.error('❌ Error updating training session:', error);
+                }
+            };
+            
+            updateSession();
+            
+            // Clear metrics
+            setPerformanceMetrics(null);
+            trainingSessionIdRef.current = null;
+        }
+    }, [isTraining, performanceMetrics, user, projectId, baseModel, projectType, classes, trainingProgress]);
+

@@ -1,0 +1,96 @@
+/* Futuristic Community Page Styles - Light Theme */
+.community-page-container {
+    background-color: #f8f9fa;
+    /* Light background */
+    min-height: 100vh;
+    color: #1f2937;
+}
+
+.futuristic-search-input {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #1f2937;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.futuristic-search-input:focus {
+    border-color: #ff0000;
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.1);
+    background: #ffffff;
+}
+
+.community-card-wrapper {
+    position: relative;
+    background: #ffffff;
+    padding: 0;
+    /* Border handled by box-shadow or border property */
+    border: 1px solid #e2e8f0;
+    border-radius: 0;
+    /* Sharp corners */
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.community-card-wrapper:hover {
+    transform: translateY(-5px);
+    border-color: #ff0000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Animated border effect for light mode - simplified to a red reveal */
+.community-card-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ff0000;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.community-card-wrapper:hover::before {
+    opacity: 1;
+}
+
+.community-card-inner {
+    position: relative;
+    background: #ffffff;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.futuristic-btn {
+    background: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 0;
+    /* Sharp */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.futuristic-btn:hover {
+    background: #cc0000;
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
+    letter-spacing: 2px;
+}
+
+.futuristic-tag {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    border-radius: 0;
+    font-weight: 600;
+}

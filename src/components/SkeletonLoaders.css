@@ -1,0 +1,944 @@
+/* ========================================
+   SHARED SKELETON ANIMATIONS & STYLES
+   ======================================== */
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.skeleton-animate {
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-animate::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            transparent 100%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+[data-theme="dark"] .skeleton-animate::before {
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.03) 50%,
+            transparent 100%);
+}
+
+/* Base Skeleton Element */
+.skeleton-element {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skeleton-element {
+    background: linear-gradient(90deg, #1e293b 25%, #2d3748 50%, #1e293b 75%);
+}
+
+/* ========================================
+   COMMON SKELETON ELEMENTS
+   ======================================== */
+
+.skeleton-topbar {
+    height: 64px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+}
+
+.skeleton-page-title {
+    width: 200px;
+    height: 32px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .skeleton-page-title {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-page-subtitle {
+    width: 300px;
+    height: 16px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skeleton-page-subtitle {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-section-title {
+    width: 150px;
+    height: 20px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .skeleton-section-title {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+/* ========================================
+   PROJECTS PAGE SKELETON
+   ======================================== */
+
+.projects-main {
+    padding: 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.skeleton-create-button {
+    width: 150px;
+    height: 40px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-create-button {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.skeleton-filter-tab {
+    width: 100px;
+    height: 36px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-filter-tab {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.skeleton-project-image {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(90deg, #f5f5f5 25%, #e5e5e5 50%, #f5f5f5 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .skeleton-project-image {
+    background: linear-gradient(90deg, #1e293b 25%, #2d3748 50%, #1e293b 75%);
+}
+
+.skeleton-project-title {
+    width: 70%;
+    height: 20px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .skeleton-project-title {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-project-meta {
+    width: 50%;
+    height: 14px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .skeleton-project-meta {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-project-stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.skeleton-stat-item {
+    flex: 1;
+    height: 40px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skeleton-stat-item {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-project-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.skeleton-action-button {
+    flex: 1;
+    height: 36px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-action-button {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+/* ========================================
+   API KEYS PAGE SKELETON
+   ======================================== */
+
+.api-keys-main {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.api-keys-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.skeleton-generate-button {
+    width: 180px;
+    height: 44px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-generate-button {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.api-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+}
+
+.skeleton-stat-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .skeleton-stat-icon {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-stat-value {
+    width: 80px;
+    height: 32px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .skeleton-stat-value {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-stat-label {
+    width: 100px;
+    height: 14px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skeleton-stat-label {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.api-keys-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.api-key-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+}
+
+.skeleton-key-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.skeleton-key-name {
+    width: 150px;
+    height: 20px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skeleton-key-name {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-key-badge {
+    width: 60px;
+    height: 22px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 999px;
+}
+
+[data-theme="dark"] .skeleton-key-badge {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-key-value {
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(90deg, #f5f5f5 25%, #e5e5e5 50%, #f5f5f5 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .skeleton-key-value {
+    background: linear-gradient(90deg, #1e293b 25%, #2d3748 50%, #1e293b 75%);
+}
+
+.skeleton-key-meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.skeleton-key-date,
+.skeleton-key-usage {
+    width: 120px;
+    height: 14px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skeleton-key-date,
+[data-theme="dark"] .skeleton-key-usage {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-key-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.skeleton-action-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skeleton-action-icon {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+/* ========================================
+   API ANALYTICS PAGE SKELETON
+   ======================================== */
+
+.analytics-main {
+    padding: 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.skeleton-date-range {
+    width: 200px;
+    height: 40px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-date-range {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.chart-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+}
+
+.skeleton-chart-title {
+    width: 150px;
+    height: 20px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .skeleton-chart-title {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-chart-area {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(90deg, #f5f5f5 25%, #e5e5e5 50%, #f5f5f5 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-chart-area {
+    background: linear-gradient(90deg, #1e293b 25%, #2d3748 50%, #1e293b 75%);
+}
+
+.rate-limits-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+}
+
+.rate-limits-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.rate-limit-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.skeleton-limit-label {
+    width: 120px;
+    height: 14px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skeleton-limit-label {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-limit-bar {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 4px;
+}
+
+[data-theme="dark"] .skeleton-limit-bar {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-limit-text {
+    width: 100px;
+    height: 12px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skeleton-limit-text {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+/* ========================================
+   PROFILE PAGE SKELETON
+   ======================================== */
+
+.profile-main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.skeleton-avatar {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 50%;
+}
+
+[data-theme="dark"] .skeleton-avatar {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-profile-name {
+    width: 200px;
+    height: 24px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .skeleton-profile-name {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-profile-email {
+    width: 250px;
+    height: 16px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skeleton-profile-email {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.profile-form {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.skeleton-form-title {
+    width: 150px;
+    height: 20px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.5rem;
+}
+
+[data-theme="dark"] .skeleton-form-title {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.skeleton-form-label {
+    width: 100px;
+    height: 14px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .skeleton-form-label {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-form-input {
+    width: 100%;
+    height: 44px;
+    background: linear-gradient(90deg, #f5f5f5 25%, #e5e5e5 50%, #f5f5f5 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-form-input {
+    background: linear-gradient(90deg, #1e293b 25%, #2d3748 50%, #1e293b 75%);
+}
+
+.skeleton-save-button {
+    width: 120px;
+    height: 44px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-save-button {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.account-stats {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+/* ========================================
+   SETTINGS PAGE SKELETON
+   ======================================== */
+
+.settings-main {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.settings-header {
+    margin-bottom: 2rem;
+}
+
+.settings-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.skeleton-settings-tab {
+    width: 100px;
+    height: 36px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-settings-tab {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.settings-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.settings-section {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settings-section:last-child {
+    border-bottom: none;
+}
+
+.skeleton-section-description {
+    width: 300px;
+    height: 14px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-top: 0.5rem;
+}
+
+[data-theme="dark"] .skeleton-section-description {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-toggle {
+    width: 48px;
+    height: 24px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 999px;
+}
+
+[data-theme="dark"] .skeleton-toggle {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.danger-zone {
+    background: var(--card-bg);
+    border: 2px solid #ef4444;
+    border-radius: var(--radius-md);
+    padding: 2rem;
+}
+
+.skeleton-danger-title {
+    width: 150px;
+    height: 20px;
+    background: linear-gradient(90deg, #fca5a5 25%, #f87171 50%, #fca5a5 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+}
+
+.skeleton-danger-description {
+    width: 250px;
+    height: 14px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .skeleton-danger-description {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-danger-button {
+    width: 140px;
+    height: 40px;
+    background: linear-gradient(90deg, #fca5a5 25%, #f87171 50%, #fca5a5 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+/* ========================================
+   STUDIO PAGE SKELETON
+   ======================================== */
+
+.studio-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.studio-header {
+    height: 64px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.skeleton-studio-title {
+    width: 200px;
+    height: 24px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skeleton-studio-title {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-studio-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.skeleton-header-button {
+    width: 100px;
+    height: 36px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-header-button {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.studio-canvas {
+    flex: 1;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skeleton-canvas-placeholder {
+    text-align: center;
+}
+
+.skeleton-canvas-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+    margin: 0 auto 1rem;
+}
+
+[data-theme="dark"] .skeleton-canvas-icon {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.skeleton-canvas-text {
+    width: 200px;
+    height: 20px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-sm);
+    margin: 0 auto;
+}
+
+[data-theme="dark"] .skeleton-canvas-text {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+
+.studio-dock {
+    height: 80px;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    align-items: center;
+}
+
+.skeleton-dock-item {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-dock-item {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}
+/* ========================================
+   LOGS PAGE SKELETON STYLES
+   ======================================== */
+
+.skeleton-button {
+    width: 120px;
+    height: 40px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #d0d0d0 50%, #e0e0e0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+[data-theme="dark"] .skeleton-button {
+    background: linear-gradient(90deg, #2d3748 25%, #374151 50%, #2d3748 75%);
+}

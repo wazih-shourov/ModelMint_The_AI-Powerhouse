@@ -1,0 +1,279 @@
+.system-monitoring-node {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px;
+    min-width: 280px;
+    max-width: 320px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.system-monitoring-node.active {
+    border-color: #ef4444;
+    box-shadow: 0 4px 30px rgba(239, 68, 68, 0.3);
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe4e6 100%);
+}
+
+.system-monitoring-node.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            #ef4444 50%,
+            transparent 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.system-monitoring-node.completed {
+    border-color: #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+/* Header */
+.monitoring-node-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e2e8f0;
+    cursor: grab;
+}
+
+.monitoring-node-header:active {
+    cursor: grabbing;
+}
+
+.monitoring-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #1f2937;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background: #ef4444;
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+}
+
+.live-indicator span {
+    color: #ef4444;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Metrics Grid */
+.monitoring-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.metric-item {
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.metric-item:hover {
+    background: rgba(241, 245, 249, 1);
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+.metric-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.metric-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.metric-label {
+    font-size: 10px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+
+.metric-value {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+}
+
+.metric-peak {
+    font-size: 9px;
+    color: #10b981;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-top: 2px;
+    font-weight: 600;
+}
+
+/* GPU Model Info */
+.gpu-model-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-bottom: 10px;
+    color: #10b981;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.gpu-model-info svg {
+    flex-shrink: 0;
+}
+
+.gpu-model-info span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Footer */
+.monitoring-node-footer {
+    padding-top: 8px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.status-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.status-text.training {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.status-text.completed {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.status-text.idle {
+    color: #6b7280;
+    background: rgba(107, 114, 128, 0.1);
+}
+
+/* Spinner */
+.spinner {
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(239, 68, 68, 0.2);
+    border-top-color: #ef4444;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .system-monitoring-node {
+        min-width: 260px;
+        max-width: 280px;
+        padding: 10px;
+    }
+
+    .monitoring-metrics-grid {
+        gap: 8px;
+    }
+
+    .metric-item {
+        padding: 8px;
+    }
+
+    .metric-value {
+        font-size: 14px;
+    }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+    .system-monitoring-node {
+        background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+    }
+}
